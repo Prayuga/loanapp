@@ -1,5 +1,6 @@
 [versions]
 agp = "8.8.0"
+androidLibrary = "7.2.0"
 kotlin = "2.0.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -41,5 +42,6 @@ koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "androidLibrary" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 

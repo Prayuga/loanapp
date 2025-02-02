@@ -1,4 +1,4 @@
-package com.yugs.core.exception
+package com.yugs.core.network.exception
 
 /**
  * @Author: Prayuga

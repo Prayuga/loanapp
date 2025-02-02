@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 import com.yugs.core.R
-import com.yugs.core.exception.ApiErrorException
-import com.yugs.core.exception.NoInternetConnectionException
+import com.yugs.core.network.exception.ApiErrorException
+import com.yugs.core.network.exception.NoInternetConnectionException
 import java.lang.Exception
 
 /**
