@@ -21,5 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "LoanApp"
 include(":app")
-include(":app:core")
 include(":core")
