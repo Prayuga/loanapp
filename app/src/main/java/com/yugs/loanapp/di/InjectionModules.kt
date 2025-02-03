@@ -6,10 +6,9 @@ import com.yugs.loanapp.data.network.datasource.LoanNetworkDataSourceImpl
 import com.yugs.loanapp.data.repository.LoanRepository
 import com.yugs.loanapp.data.repository.LoanRepositoryImpl
 import com.yugs.loanapp.domain.GetLoansUseCase
-import com.yugs.loanapp.ui.home.HomeViewModel
+import com.yugs.loanapp.ui.loanlist.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 /**

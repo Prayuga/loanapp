@@ -1,4 +1,4 @@
-package com.yugs.loanapp.ui.home
+package com.yugs.loanapp.ui.loanlist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,15 +15,12 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     val getLoansUseCase: GetLoansUseCase
 ): ViewModel() {
-    val myLabel = "OKEEE"
 
     val loanListData = MutableLiveData<ViewResource<List<Loan>>>()
 
     fun fetchLoans() {
         viewModelScope.launch {
-            println("zxc -> fetch Loans")
             getLoansUseCase().collect {
-                println("zxc -> collect ${it.data}")
                 loanListData.value = it
             }
         }

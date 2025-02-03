@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="purple">#2C0F61</color>
+    <color name="tint_orange">#FF9800</color>
 </resources>
