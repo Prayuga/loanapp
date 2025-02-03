@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
  * @Author: Prayuga
  * @Date: 2/2/2025
  */
-class HomeViewModel(
+class LoanListViewModel(
     val getLoansUseCase: GetLoansUseCase
 ): ViewModel() {
 

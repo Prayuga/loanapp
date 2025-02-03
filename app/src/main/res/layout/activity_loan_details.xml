@@ -1,9 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.loandetails.LoanDetailsActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="data"
+            type="com.yugs.loanapp.ui.viewparam.Loan" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.loandetails.LoanDetailsActivity">
+
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="#FD9C00">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="36dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="20dp"
+                app:tint="@color/purple"
+                android:src="@drawable/ic_back"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple"
+                android:layout_marginEnd="50dp"
+                android:text="Details"/>
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_loan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:cardBackgroundColor="#FFE3CC"
+            app:cardCornerRadius="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.borrower.name}"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/purple"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    tools:text="Isyana sarasvati"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.borrower.email}"
+                    android:textSize="14sp"
+                    android:textColor="@color/purple"
+                    android:layout_marginStart="20dp"
+                    tools:text="Isyana@gmail.com"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/tv_credit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.borrower.creditScore + ` (credit score)`}"
+                    android:textSize="14sp"
+                    android:textColor="@color/purple"
+                    android:layout_marginStart="20dp"
+                    tools:text="650 (credit score)"
+                    app:layout_constraintTop_toBottomOf="@id/tv_email"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_risk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.riskRating}"
+                    android:textSize="22sp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/purple"
+                    tools:text="C"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_risk_rating"
+                    android:contentDescription="@string/icon_description"
+                    app:tint="@color/tint_orange"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_risk"
+                    app:layout_constraintEnd_toStartOf="@id/tv_risk"
+                    app:layout_constraintTop_toTopOf="@+id/tv_risk" />
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="#FFC26E"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_credit"
+                    tools:layout_editor_absoluteX="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#2F2F2F"
+                        android:text="@{data.purpose}"
+                        tools:text="Business expansion" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/iv_money"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/icon_description"
+                    android:src="@drawable/ic_money"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_interest"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                    app:tint="@color/tint_orange" />
+
+                <TextView
+                    android:id="@+id/tv_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(data.amount)}"
+                    tools:text="5000"
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/purple"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_money"
+                    app:layout_constraintStart_toStartOf="@+id/iv_money"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_money" />
+
+                <ImageView
+                    android:id="@+id/iv_interest"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_interest"
+                    android:contentDescription="@string/icon_description"
+                    app:tint="@color/tint_orange"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_calendar"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/iv_money"
+                    app:layout_constraintTop_toTopOf="@+id/iv_money" />
+
+                <TextView
+                    android:id="@+id/tv_interest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="80% interest"
+                    android:textSize="12sp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/purple"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_interest"
+                    app:layout_constraintStart_toStartOf="@+id/iv_interest"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_interest" />
+
+                <ImageView
+                    android:id="@+id/iv_calendar"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/icon_description"
+                    android:src="@drawable/ic_calendar"
+                    android:layout_marginEnd="50dp"
+                    app:tint="@color/tint_orange"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/iv_interest"
+                    app:layout_constraintTop_toTopOf="@+id/iv_money" />
+
+                <TextView
+                    android:id="@+id/tv_term"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="120 months"
+                    android:textSize="12sp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/purple"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_calendar"
+                    app:layout_constraintStart_toStartOf="@+id/iv_calendar"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_calendar" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_collateral_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Collateral"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/card_loan"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_collateral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="- Real estate : $5000"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_collateral_title"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"/>
+
+        <TextView
+            android:id="@+id/tv_repayment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Repayment Schedule"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tv_collateral"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_repayment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="- 2023-01-15 : $500\n- 2023-01-15 : $500"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_repayment_title"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_document"
+            app:layout_constraintTop_toBottomOf="@id/tv_repayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:text="View Document"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

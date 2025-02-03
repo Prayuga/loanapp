@@ -1,8 +1,6 @@
 package com.yugs.loanapp.ui.loanlist
 
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.RelativeSizeSpan
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.yugs.loanapp.databinding.ItemLoanBinding
 import com.yugs.loanapp.ui.viewparam.Loan
+import com.yugs.loanapp.utils.toSpannableHighlight
 
 /**
  * @Author: Prayuga
@@ -21,10 +20,11 @@ class LoanAdapter(
 
     inner class LoanViewHolder(private val binding: ItemLoanBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(loan: Loan) {
             binding.data = loan
-            binding.tvInterest.text = adjustTextSize("${loan.interestPercentage}% interest")
-            binding.tvTerm.text = adjustTextSize("${loan.term} months")
+            binding.tvInterest.text = "${loan.interestPercentage}% interest".toSpannableHighlight()
+            binding.tvTerm.text = "${loan.term} months".toSpannableHighlight()
             binding.root.setOnClickListener { onLoanClick(loan) }
             binding.executePendingBindings()
         }
@@ -38,6 +38,15 @@ class LoanAdapter(
     override fun onBindViewHolder(holder: LoanViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
+
+    fun sortListByTerm(ascending: Boolean) {
+        val sortedList = if (ascending) {
+            currentList.sortedBy { it.term }
+        } else {
+            currentList.sortedByDescending { it.term }
+        }
+        submitList(sortedList) // Update RecyclerView
+    }
 }
 
 class LoanDiffCallback : DiffUtil.ItemCallback<Loan>() {
@@ -45,9 +54,3 @@ class LoanDiffCallback : DiffUtil.ItemCallback<Loan>() {
     override fun areContentsTheSame(oldItem: Loan, newItem: Loan): Boolean = oldItem == newItem
 }
 
-private fun adjustTextSize(text: String): SpannableString {
-    val spannable = SpannableString(text)
-    spannable.setSpan(RelativeSizeSpan(1.5f), 0, text.indexOf(" "), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-    return spannable
-}
